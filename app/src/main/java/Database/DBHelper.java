@@ -29,6 +29,19 @@ public class DBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
-    
+
+    public boolean addInfo(String userName, String password){
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UsersMaster.Users.COLUMN_NAME_USERNAME,userName);
+        values.put(UsersMaster.Users.COLUMN_NAME_PASSWORD,password);
+
+        long result = db.insert(UsersMaster.Users.TABLE_NAME,null,values);
+
+        if (result > 0){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
