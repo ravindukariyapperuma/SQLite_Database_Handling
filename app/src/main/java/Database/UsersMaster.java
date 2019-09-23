@@ -3,7 +3,7 @@ package Database;
 import android.provider.BaseColumns;
 
 public final class UsersMaster {
-    
+
     private UsersMaster() {
     }
 
