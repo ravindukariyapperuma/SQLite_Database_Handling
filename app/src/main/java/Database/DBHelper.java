@@ -79,4 +79,16 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return userNameList;
     }
+
+    public int deleteInfo(String name){
+        SQLiteDatabase db = getReadableDatabase();
+        String select = UsersMaster.Users.COLUMN_NAME_USERNAME+" Like ?";
+        String[] selectArgs = {name};
+        int result = db.delete(UsersMaster.Users.TABLE_NAME,select,selectArgs);
+        if (result > 0){
+            return 1;
+        }else {
+            return -1;
+        }
+    }
 }
