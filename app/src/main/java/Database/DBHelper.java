@@ -2,10 +2,14 @@ package Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -43,5 +47,36 @@ public class DBHelper extends SQLiteOpenHelper {
         }else{
             return false;
         }
+    }
+
+    public List readAllInfo(){
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                UsersMaster.Users._ID,
+                UsersMaster.Users.COLUMN_NAME_USERNAME,
+                UsersMaster.Users.COLUMN_NAME_PASSWORD
+        };
+
+        String sortOrder = UsersMaster.Users.COLUMN_NAME_USERNAME+" DESC";
+
+        Cursor cursor = db.query(
+                UsersMaster.Users.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                sortOrder);
+        List userNameList = new ArrayList();
+        List passwordList = new ArrayList();
+
+        while (cursor.moveToNext()){
+            String username = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.COLUMN_NAME_USERNAME));
+            String password = cursor.getString(cursor.getColumnIndexOrThrow(UsersMaster.Users.COLUMN_NAME_PASSWORD));
+            userNameList.add(username);
+            passwordList.add(password);
+        }
+        return userNameList;
     }
 }
