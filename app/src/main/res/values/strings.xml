@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SQLite_Database_Handling</string>
+    <string name="User_Name">User Name</string>
+    <string name="Password">Password</string>
+    <string name="Name">Name</string>
+    <string name="SelectAll">SELECT ALL</string>
+    <string name="Add">ADD</string>
+    <string name="SignIn">SIGN IN</string>
+    <string name="Delete">DELETE</string>
+    <string name="Update">UPDATE</string>
 </resources>
