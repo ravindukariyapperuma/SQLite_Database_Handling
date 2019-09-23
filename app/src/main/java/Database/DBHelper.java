@@ -91,4 +91,19 @@ public class DBHelper extends SQLiteOpenHelper {
             return -1;
         }
     }
+
+    public boolean updateInfo(String userName, String password){
+        SQLiteDatabase db = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UsersMaster.Users.COLUMN_NAME_PASSWORD,password);
+
+        String select = UsersMaster.Users.COLUMN_NAME_USERNAME+" Like ?";
+        String[] selectionArgs = {userName};
+        int result = db.update(UsersMaster.Users.TABLE_NAME,values,select,selectionArgs);
+        if (result > 0){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
